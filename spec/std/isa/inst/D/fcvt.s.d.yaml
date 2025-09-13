@@ -13,8 +13,8 @@ description:
     text: |
       `fcvt.s.d` converts a double-precision floating-point number to a single-precision floating-point number.
        This is encoded in the OP-FP major opcode space and both the source and destination are floating-point
-       registers. The `rs2` field encodes the datatype of the source, and the `fmt` field encodes the datatype
-       of the destination. `fcvt.s.d` rounds according to the RM field
+       registers. The `xs2` field encodes the datatype of the source, and the `fmt` field encodes the datatype
+       of the destination. `fcvt.s.d` rounds according to the `rm` field.
 definedBy: D
 assembly: fd, fs1, rm
 encoding:
