@@ -6,10 +6,12 @@
 $schema: "inst_schema.json#"
 kind: instruction
 name: vwsll.vi
-long_name: No synopsis available
+long_name: Vector widening shift left logical by immediate
 description: |
-  No description available.
-definedBy: Zvbb
+  Performs a widening shift left logical operation on each element in vector register vs2 by the immediate shift amount, storing double-width results in vector register vd according to mask vm.
+definedBy:
+  extension:
+    name: Zvbb
 assembly: vd, vs2, imm, vm
 encoding:
   match: 110101-----------011-----1010111
@@ -18,7 +20,7 @@ encoding:
       location: 25-25
     - name: vs2
       location: 24-20
-    - name: zimm5
+    - name: imm
       location: 19-15
     - name: vd
       location: 11-7

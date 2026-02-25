@@ -6,11 +6,15 @@
 $schema: inst_schema.json#
 kind: instruction
 name: fmaxm.d
-long_name: No synopsis available
+long_name: Floating-Point Maximum-Number NaN Double-Precision
 description: |
-  No description available.
+  The `fmaxm.d` instruction writes larger of `fs1` and `fs2` to `fd`. It is defined like `fmax.d` instruction, except
+  that if either input is NaN, the result is the canonical NaN.
 definedBy:
-  allOf: [D, Zfa]
+  extension:
+    allOf:
+      - name: D
+      - name: Zfa
 assembly: fd, fs1, fs2
 encoding:
   match: 0010101----------011-----1010011

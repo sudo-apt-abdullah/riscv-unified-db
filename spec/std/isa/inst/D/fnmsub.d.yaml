@@ -6,13 +6,18 @@
 $schema: inst_schema.json#
 kind: instruction
 name: fnmsub.d
-long_name: No synopsis available
+long_name: Floating-Point Negate-Multiply-Subtract Double-Precision
+definedBy:
+  extension:
+    oneOf:
+      - name: D
+      - name: Zdinx
 description: |
-  No description available.
-definedBy: D
+  The `fnmsub.d` instruction multiplies the values in `fs1` and `fs2`, negates the product, adds the value in `fs3`, and
+  writes the final result to `fd`.
 assembly: fd, fs1, fs2, fs3, rm
 encoding:
-  match: -----01------------------1001011
+  match: "-----01------------------1001011"
   variables:
     - name: fs3
       location: 31-27

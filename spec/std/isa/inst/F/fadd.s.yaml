@@ -6,11 +6,13 @@
 $schema: "inst_schema.json#"
 kind: instruction
 name: fadd.s
-long_name: Single-precision floating-point addition
+long_name: Floating-Point Add Single-Precision
 description: |
-  Do the single-precision floating-point addition of fs1 and fs2 and store the result in fd.
-  rm is the dynamic Rounding Mode.
-definedBy: F
+  The `fadd.s` instruction performs single-precision floating-point addition of `fs1` and `fs2`
+  and writes the final result to `fd`.
+definedBy:
+  extension:
+    name: F
 assembly: fd, fs1, fs2, rm
 encoding:
   match: 0000000------------------1010011

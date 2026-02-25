@@ -6,10 +6,16 @@
 $schema: inst_schema.json#
 kind: instruction
 name: fmul.d
-long_name: No synopsis available
+long_name: Floating-Point Multiply Double-Precision
+definedBy:
+  extension:
+    oneOf:
+      - name: D
+      - name: Zdinx
 description: |
-  No description available.
-definedBy: D
+  The `fmul.d` instruction performs the double-precision floating-point multiplication between `fs1` and `fs2`.
+  It is defined analogously to its single-precision counterpart, but operates on double-precision operands and
+  produces double-precision results.
 assembly: fd, fs1, fs2, rm
 encoding:
   match: 0001001------------------1010011

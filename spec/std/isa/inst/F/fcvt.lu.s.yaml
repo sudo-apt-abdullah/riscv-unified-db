@@ -6,15 +6,15 @@
 $schema: "inst_schema.json#"
 kind: instruction
 name: fcvt.lu.s
-long_name: Floating-point Convert Single-precision to Unsigned Long
-description:
-  - id: inst-fcvt.lu.s-behaviour
-    normative: false
-    text: |
-      `fcvt.l.s` converts a floating-point number in floating-point register `fs1` to a unsigned
-      64-bit integer, in integer register `xd`.
-definedBy: F
-base: 64
+long_name: Floating-Point Convert Single-Precision to Unsigned Long
+description: |
+  The `fcvt.lu.s` instruction converts a floating-point number in floating-point register `fs1` to a unsigned
+  64-bit integer, in integer register `xd`.
+definedBy:
+  allOf:
+    - xlen: 64
+    - extension:
+        name: F
 assembly: xd, fs1, rm
 encoding:
   match: 110000000011-------------1010011

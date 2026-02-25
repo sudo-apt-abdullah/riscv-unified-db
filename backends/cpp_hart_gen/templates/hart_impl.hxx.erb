@@ -83,7 +83,7 @@ namespace udb {
     InstBase* inst = reinterpret_cast<InstBase*>(m_run_one_inst_storage.data());
     if (_decode(m_pc, enc, inst) == false) {
       try {
-        raise(ExceptionCode{ExceptionCode::IllegalInstruction}, mode(), m_params.REPORT_ENCODING_IN_MTVAL_ON_ILLEGAL_INSTRUCTION ? enc : decltype(enc){0});
+        raise(ExceptionCode{ExceptionCode::IllegalInstruction}, mode(), m_params.REPORT_ENCODING_IN_MTVAL_ON_ILLEGAL_INSTRUCTION.value() ? enc : decltype(enc){0});
       } catch (const AbortInstruction& e) {
         return StopReason::Exception;
      }
@@ -138,10 +138,19 @@ namespace udb {
         for (unsigned b = 0; b < bb_size; b++) {
           inst = current_bb->pop();
 
+          fmt::print("PC {:x} {}\n", m_pc, inst->disassemble());
+          for (auto r : inst->srcRegs()) {
+            fmt::print("R {} {:x}\n", r.to_string(), _xreg(r.get_num()));
+          }
+
           // set the fall-through next pc
           m_next_pc = m_pc + Bits<MXLEN>{inst->enc_len()};
 
           inst->execute();
+
+          for (auto r : inst->dstRegs()) {
+            fmt::print("R= {} {:x}\n", r.to_string(), _xreg(r.get_num()));
+          }
 
           advance_pc();
           if (this->m_exit_requested) {
@@ -158,7 +167,7 @@ namespace udb {
 
           inst = current_bb->alloc_inst();
           if (_decode(m_pc, enc, inst) == false) {
-            raise(ExceptionCode{ExceptionCode::IllegalInstruction}, mode(), m_params.REPORT_ENCODING_IN_MTVAL_ON_ILLEGAL_INSTRUCTION ? enc : decltype(enc){0});
+            raise(ExceptionCode{ExceptionCode::IllegalInstruction}, mode(), m_params.REPORT_ENCODING_IN_MTVAL_ON_ILLEGAL_INSTRUCTION.value() ? enc : decltype(enc){0});
           }
 
           fmt::print("PC {:x} {}\n", m_pc, inst->disassemble());
