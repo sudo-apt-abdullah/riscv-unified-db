@@ -47,6 +47,6 @@ sw_read(): |
              (mode() == PrivilegeMode::VU && (CSR[henvcfg].SSE == 0 || CSR[senvcfg].SSE == 0))) {
     raise(ExceptionCode::VirtualInstruction, mode(), $encoding);
   } else if (xlen() == 32) {
-    return ($bits(CSR[ssp]) & ~3);
+    return ($bits(CSR[ssp]) & ~MXLEN'3);
   }
-  return ($bits(CSR[ssp]) & ~7);
+  return ($bits(CSR[ssp]) & ~MXLEN'7);
